@@ -1,0 +1,47 @@
+.footer {
+  background: black;
+  color: gray;
+  padding-top: 1em;
+  font-size: 12px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 1em;
+  &__container {
+    &__h1 > a > svg {
+      font-size: 30px;
+      cursor: pointer;
+      margin-right: 10px;
+      text-decoration: none;
+      color: lightgray;
+    }
+
+    &__icons {
+      display: flex;
+      margin-left: 20%;
+    }
+    &__row {
+      display: flex;
+      margin-left: 20%;
+      .col1 {
+        padding-right: 50px;
+        .list-unstyled > li {
+          color: gray;
+          cursor: pointer;
+          list-style: none;
+          font-size: 12px;
+        }
+      }
+      .col {
+        padding-left: 50px;
+        padding-right: 50px;
+        .list-unstyled > li {
+          color: gray;
+          cursor: pointer;
+          list-style: none;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
