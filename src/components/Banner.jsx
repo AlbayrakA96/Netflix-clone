@@ -15,7 +15,7 @@ const Banner = () => {
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(requests.fetchComedyMovies);
-      setMovie(request.data.results[1]);
+      setMovie(request.data.results[2]);
       return requests;
     }
     fetchData();
