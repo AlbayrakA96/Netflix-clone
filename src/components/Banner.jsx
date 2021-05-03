@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../style.css";
 
 import axios from "../axios";
+import requests from "../Requests";
 import ReactPlayer from "react-player/youtube";
 import { AiFillCloseCircle, AiOutlineCheck } from "react-icons/ai";
 import { VscThumbsdown, VscThumbsup, VscUnmute, VscMute } from "react-icons/vsc";
@@ -13,7 +14,8 @@ import Test from "./Test";
 const Banner = () => {
   const dispatch = useDispatch();
 
-  const API_KEY = "00c655f5cf699862386184d892b7378f";
+  const API_KEY = "d4e2448287553d83842f860fea84e802";
+  const API_KEY2 = "cf5a5588d2c948d27561ab0d35fbfd29";
 
   const [movie, setMovie] = useState([]);
   const [active, setActive] = useState(false);
@@ -28,12 +30,10 @@ const Banner = () => {
   // tijdelijke API call
   useEffect(() => {
     async function fetchData() {
-      const request = await axios.get("/Discover");
-      setMovie(request.data?.results);
-      // setMovieId(request.data?.results[0]);
-      // dispatch(setMovieIdRedux({ movies: request.data }));
-      return request;
+      const request = await axios.get(requests.fetchActionMovies);
+      setMovie(request.data.results[1]);
     }
+
     fetchData();
   }, []);
 
@@ -41,17 +41,20 @@ const Banner = () => {
 
   useEffect(() => {
     async function fetchGenre() {
-      const genre = await axios.get(`/Movie/460465`);
-      setGenre(genre.data?.genres);
+      const genre = await axios.get(`/movie/399566?api_key=${API_KEY}&language=en-US
+      `);
+      setGenre(genre.data.genres);
       setCompany(genre.data.production_companies[0].name);
       return genre;
     }
     fetchGenre();
   }, []);
 
+  console.log(genre);
+
   useEffect(() => {
     async function fetchTitle() {
-      const movieTitle = await axios.get(`http://webservice.fanart.tv/v3/movies/460465?api_key=${API_KEY}`);
+      const movieTitle = await axios.get(`http://webservice.fanart.tv/v3/movies/399566?api_key=${API_KEY2}`);
       setTitle(movieTitle.data?.hdmovielogo[1]);
       return movieTitle;
     }
@@ -68,12 +71,12 @@ const Banner = () => {
         style={{
           backgroundSize: "cover",
           backgroundPosition: "center center",
-          backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie[0]?.backdrop_path || movie[0]?.poster__path}")`,
+          backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path || movie[0]?.poster__path}")`,
         }}
       >
         {active ? (
           <div className="player-wrapper">
-            <ReactPlayer playing={true} className="react-player" url="https://www.youtube.com/watch?v=Z5CWOcrw-h8" width="100%" height="100%" />
+            <ReactPlayer playing={true} className="react-player" url="https://www.youtube.com/watch?v=odM92ap8_c0" width="100%" height="100%" />
             <button onClick={() => setActive(!active)} className="player__button">
               x
             </button>
@@ -92,7 +95,7 @@ const Banner = () => {
                   Meer informatie
                 </button>
               </div>
-              <h1 className="banner__contents__description">{truncate(`${movie[0]?.overview}`, 150)}</h1>
+              <h1 className="banner__contents__description">{truncate(`${movie?.overview}`, 150)}</h1>
             </div>
             <div className="banner--fadeBottom" />
           </>
@@ -104,7 +107,7 @@ const Banner = () => {
               playing={play}
               muted={mute}
               className="pop-up__react-player"
-              url="https://www.youtube.com/watch?v=lFDVL1e8WM4"
+              url="https://www.youtube.com/watch?v=odM92ap8_c0"
               width="100%"
               height="100%"
             />
@@ -129,8 +132,8 @@ const Banner = () => {
 
               <div className="pop-up__content__description">
                 <p className="release">
-                  <span className="average">Cijfer {movie[0].vote_average}</span>
-                  {` ${movie[0].release_date}`}
+                  <span className="average">Cijfer {movie.vote_average}</span>
+                  {` ${movie.release_date}`}
                 </p>
 
                 <img src="https://cdn.worldvectorlogo.com/logos/kijkwijzer.svg" alt="" />
@@ -139,7 +142,7 @@ const Banner = () => {
               </div>
               <div className="pop-up__content__container">
                 <div className="description">
-                  <p>{movie[0]?.overview}</p>
+                  <p>{movie?.overview}</p>
                 </div>
                 <div className="genres">
                   <p className="gray">Genres: &nbsp;</p>
@@ -160,11 +163,11 @@ const Banner = () => {
       {/* <div className=""></div> */}
       <h2 className="banner__contents__type">Originals</h2>
 
-      <div className="banner__contents__slider">
+      {/* <div className="banner__contents__slider">
         {movie.map((image) => (
           <Test imageUrl={`${image?.backdrop_path}`} />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };
