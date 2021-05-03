@@ -1,0 +1,11 @@
+img {
+  max-height: 150px;
+  object-fit: contain;
+  margin-right: 10px;
+  transition: transform 450ms;
+}
+
+img:hover {
+  transform: scale(1.08);
+  opacity: 1;
+}

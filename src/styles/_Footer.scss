@@ -4,6 +4,7 @@
   padding-top: 1em;
   font-size: 12px;
   position: relative;
+  left: 0;
   bottom: 0;
   width: 100%;
   padding-bottom: 1em;
@@ -40,6 +41,67 @@
           cursor: pointer;
           list-style: none;
           font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 824px) {
+  .footer {
+    background: black;
+    color: gray;
+    padding-top: 1em;
+    font-size: 12px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 1em;
+    &__container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      &__h1 > a > svg {
+        font-size: 30px;
+        cursor: pointer;
+        margin-right: 10px;
+        text-decoration: none;
+        color: lightgray;
+      }
+
+      &__icons {
+        display: flex;
+        margin-left: -3%;
+      }
+      &__row {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0%;
+        .col1 {
+          padding-right: 50px;
+          .list-unstyled > li {
+            color: gray;
+            cursor: pointer;
+            list-style: none;
+            font-size: 12px;
+            line-height: 1.5;
+            // border: 2px solid blue;
+          }
+        }
+        .col {
+          // border: 2px solid blue;
+
+          padding-left: 0px;
+          padding-right: 0px;
+          .list-unstyled > li {
+            line-height: 1.5;
+
+            color: gray;
+            cursor: pointer;
+            list-style: none;
+            font-size: 12px;
+          }
         }
       }
     }
