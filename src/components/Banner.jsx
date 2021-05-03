@@ -54,7 +54,7 @@ const Banner = () => {
 
   useEffect(() => {
     async function fetchTitle() {
-      const movieTitle = await axios.get(`http://webservice.fanart.tv/v3/movies/399566?api_key=${API_KEY2}`);
+      const movieTitle = await axios.get(`https://webservice.fanart.tv/v3/movies/399566?api_key=${API_KEY2}`);
       setTitle(movieTitle.data?.hdmovielogo[1]);
       return movieTitle;
     }
